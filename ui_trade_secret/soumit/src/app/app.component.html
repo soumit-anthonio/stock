@@ -1,0 +1,110 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="center" *ngIf="!showMain()">
+  <input #password id="password" type="password" value="" (keydown.enter)="submit(password)">&nbsp;&nbsp;
+  <button class="btn btn-info text-uppercase" type="button" (click)="submit(password)">
+    SUBMIT</button>
+</div>
+<div *ngIf="showMain()">
+  <div style="text-align:center">
+    <h1>
+      Welcome to {{ title }}!
+    </h1>
+    <span class="text-style">STOCK PRICE PREDICTOR</span>
+    <br>
+    <span class="text-style">DISCLAIMER</span><br>
+    <span class="text-style">I AM NOT A PROFESSIONAL TRADER NOT A TECHNICAL ANALYST</span><br>
+    <span class="text-style">I AM NOT ENCOURAGING, DISCAURAGING OR INDULGE ANYONE TO PLAY IN THE STOCK MARKET</span><br>
+    <span class="text-style">THIS IS PURELY EDUCATIONAL PURPOSE ONLY. I WILL NOT BE LIABLE FOR ANY GAIN OR LOSS IN THE
+      STOCK MARKET WITH THIS
+      PREDICTION</span><br>
+    <span class="text-style">PLEASE USE YOUR OWN STRATEGY WHILE PLAYING. THIS ALGORITHM IS PURE HYPOTHESIS. WE CAN NOT
+      PREDICT STOCK MARKET
+      WITH THIS
+      ALGORITHM</span><br>
+    <br>
+
+  </div>
+  <div style="text-align:center">
+    <div class="row grid-row">
+      <div class="col-sm-3"><span class="text-style font-bold">Open Price of previous day</span><br>
+        <input #openPrice id="openPrice" type="number" value="">
+      </div>
+      <div class="col-sm-3">
+        <span class="text-style font-bold">High Price of previous day</span><br>
+        <input #highPrice id="highPrice" type="number" value="">
+      </div>
+      <div class="col-sm-3">
+        <span class="text-style font-bold">Low Price of previous day</span><br>
+        <input #lowPrice id="lowPrice" type="number" value="">
+      </div>
+      <div class="col-sm-3">
+        <span class="text-style font-bold">Close Price of previous day</span><br>
+        <input #closePrice id="closePrice" type="number" value="">
+      </div>
+      <div class="col-sm-3">
+
+      </div>
+
+    </div>
+    <div class="row grid-row">
+      <div class="col-12 pt-2">
+        <button class="btn btn-warning text-uppercase" type="button" (click)="predictStock($event)">
+          STOCK PREDICTION</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-info text-uppercase" type="button"
+          (click)="clear(openPrice,highPrice,lowPrice,closePrice)">
+          CLEAR</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-info text-uppercase" type="button" (click)="back()">
+          BACK</button>
+      </div>
+    </div>
+    <div class="row grid-row">
+      <div class="col-12 pt-2">
+        <input #stock_signature id="stock_signature" type="text" value=""><br>
+        <button class="btn btn-warning text-uppercase pt-2" type="button" (click)="callAPI($event)">
+          STOCK PREDICTION</button>
+      </div>
+    </div>
+
+  </div>
+  <hr>
+  <div style="text-align:center">
+    <h3 *ngIf="stockFound">
+      BELOW ARE THE PREDICTIONS of {{company_name}}
+    </h3>
+  </div>
+
+  <div style="text-align:center">
+    <hr>
+    <span class="text-style">Your todays probable trading <strong>high price</strong> should be between : <strong>{{th}}
+        to
+        {{ph}}</strong> and average is {{avg_high_price}}</span><br>
+    <span class="text-style">If any bad news is going on about the said stock then its <strong>high price</strong> can
+      be
+      down upto
+      <strong>{{tl}}</strong> extend
+    </span><br>
+    <span class="text-style">If any good news is going on about the said stock then its <strong>high price</strong> can
+      be
+      reach upto
+      <strong>{{bh}}</strong> extend
+    </span><br>
+    <span class="text-style">Your todays probable trading <strong>low price</strong> should be between : <strong>{{pl}}
+        -
+        {{first_low}}</strong> and average is <strong>{{avg_low_price}}</strong></span><br>
+    <span class="text-style">Your todays probable <strong>Safe Stoploss</strong> should be :
+      <strong>{{moderate_stoploss}}</strong></span><br>
+    <span class="text-style">Your todays probable <strong>Riskey Stoploss</strong> should be :
+      <strong>{{risky_stoploss}}</strong></span><br>
+    <span class="text-style">If any bad news is going on about the said stock then its <strong>lower price</strong> can
+      be
+      down to
+      <strong>{{bl}}</strong>
+      extend</span><br>
+    <span class="text-style"><strong>NSE circuit limit</strong> of this stock is between <strong>{{total_circuit_low}} -
+        {{total_circuit_high}}</strong></span><br><br><br><br>
+    <span class="text-style font-bold">------------------THANK YOU FOR YOUR TIME----------------------------</span><br>
+    <span class="text-style font-bold">------------------HAPPY TRADING----------------------------</span>
+  </div>
+</div>
+
+
+
+<router-outlet></router-outlet>
