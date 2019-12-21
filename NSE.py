@@ -33,14 +33,11 @@ from nsetools.bases import AbstractBaseExchange
 from nsetools.utils import byte_adaptor
 from nsetools.utils import js_adaptor
 # import paths differ in python 2 and python 3
-if six.PY2:
-    from urllib2 import build_opener, HTTPCookieProcessor, Request
-    from urllib import urlencode
-    from cookielib import CookieJar
-elif six.PY3:
-    from urllib.request import build_opener, HTTPCookieProcessor, Request
-    from urllib.parse import urlencode
-    from http.cookiejar import CookieJar
+
+
+from urllib.request import build_opener, HTTPCookieProcessor, Request
+from urllib.parse import urlencode
+from http.cookiejar import CookieJar
 
 
 class Nse(AbstractBaseExchange):

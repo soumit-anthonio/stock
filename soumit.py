@@ -2,7 +2,7 @@ import urllib
 from pandas import DataFrame
 import datetime
 from dateutil.parser import parse
-
+from datetime import date
 from nsepy import get_history
 import json
 import sys
@@ -23,21 +23,24 @@ import sys
 # from nsetools.utils import byte_adaptor
 # from nsetools.utils import js_adaptor
 print('Your STOCK DATA already downloaded in the data folder')
-
-symbol = sys.argv[1].upper()
-start = parse(sys.argv[2])
-end = datetime.datetime.now()
-print('Your STOCK DATA already downloaded in the data folder')
-stock_fut = get_history(symbol=symbol,
-                        start=start,
-                        end=end)
-print('Your STOCK DATA already downloaded in the data folder')
-print(stock_fut.head())
-print('Your STOCK DATA already downloaded in the data folder')
-df = DataFrame(stock_fut, columns=[
-               'Symbol', 'Series', 'Prev Close', 'Open', 'High', 'Low', 'Close', 'Volume'])
-Export = df.to_json(r'E:/stock/data/_data.json', orient='index')
-print('Your STOCK DATA already downloaded in the data folder')
+sbin = get_history(symbol='SBIN',
+                   start=date(2015, 1, 1),
+                   end=date(2015, 1, 10))
+sbin.to_csv('E:/stock/data/')
+# symbol = sys.argv[1].upper()
+# start = parse(sys.argv[2])
+# end = datetime.datetime.now()
+# print('Your STOCK DATA already downloaded in the data folder')
+# stock_fut = get_history(symbol=symbol,
+#                         start=start,
+#                         end=end)
+# print('Your STOCK DATA already downloaded in the data folder')
+# print(stock_fut.head())
+# print('Your STOCK DATA already downloaded in the data folder')
+# df = DataFrame(stock_fut, columns=[
+#                'Symbol', 'Series', 'Prev Close', 'Open', 'High', 'Low', 'Close', 'Volume'])
+# Export = df.to_json(r'E:/stock/data/_data.json', orient='index')
+# print('Your STOCK DATA already downloaded in the data folder')
 
 # url = "http://www.nseindia.com/live_market/dynaContent/live_analysis/gainers/niftyGainers1.json"
 
